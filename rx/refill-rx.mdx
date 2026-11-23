@@ -58,6 +58,7 @@ There are three types of Rx identifiers that may be used to trigger the 'Refill 
 |------|------|----------|------------|
 | notesToPharmacy | string | <Badge color="surface" size="sm" shape="rounded">Optional</Badge> | Additional notes to be sent to pharmacy associated with refill process. |
 | shippingMethod | string | <Badge color="surface" size="sm" shape="rounded">Optional</Badge> | Shipping method information. List of preferred values will be provided upon request. |
+| externalShipmentID | string | <Badge color="surface" size="sm">Optional</Badge> | The clinic’s shipment ID. (If externalShipmentID is provided and configured for your organization, it will be included in refill-related webhook payloads) |
 
 
 ## Response
@@ -89,4 +90,3 @@ There are three types of Rx identifiers that may be used to trigger the 'Refill 
 "OK"
 ```
 </ResponseExample>
-
