@@ -40,9 +40,10 @@ The endpoint returns search results in paginated sets, with each page containing
 
 | Field | Type | Description |
 | --- | --- | --- |
-| currentPage | integer | Current page index |
-| hasNextPage | boolean | Indicates if additional pages exist |
-| recordCount | integer | Total number of records |
+| currentPage | integer | Index of the current page in the paging set. |
+| hasNextPage | boolean | Flag indicating if there is an available next page in the set. |
+| recordCount | integer | Total count of prescriber records available in the paging set. |
+| data | object[] | List of prescriber information (explanation below). |
 
 ### data (array of objects)
 
