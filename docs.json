@@ -49,6 +49,7 @@
         "pages": [
           "rx/add-rx",
           "rx/get-rx-status",
+          "rx/get-rx-status-2",
           "rx/cancel-rx",
           "rx/refill-rx",
           "rx/release-rx",
