@@ -1,0 +1,100 @@
+---
+title: "Get Prescribers"
+tag: "GET"
+---
+
+<Info>
+  All requests require a valid JWT token
+</Info>
+
+<Card title="Endpoint" icon="text-align-start" horizontal href="/">
+  GET `<path to API root>/api/Prescribers/Get`
+</Card>
+
+The <Badge color="yellow">Get Prescribers</Badge> endpoint is designed for retrieving prescribers’ information from the clinic's database. It accepts input parameters such as 'PrescriberNPINumber', 'ClinicNumber' or ‘State’ to facilitate prescriber searches.
+
+The endpoint returns search results in paginated sets, with each page containing a maximum of 500 records. However, clients have the option to customize the number of records per page by specifying the desired value in the request object.
+
+---
+
+## Body (application/json)
+
+### Required Fields
+
+| Field | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| clinicNumber | string | <Badge color="red">Required</Badge> | Clinic Number information provided by Wells. |
+
+### Optional Fields
+
+| Field | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| prescriberNPINumber | string | <Badge>Optional</Badge> | Prescriber's NPI number. |
+| state | string | <Badge>Optional</Badge> | Prescriber's licensed state code information. |
+| pageNumber | integer | <Badge>Optional</Badge> | The page number for the requested data set. |
+| pageSize | integer | <Badge>Optional</Badge> | Number of prescriber records to be returned per page (maximum value is 500). |
+
+## Response (application/json)
+
+### Pagination
+
+| Field | Type | Description |
+| --- | --- | --- |
+| currentPage | integer | Current page index |
+| hasNextPage | boolean | Indicates if additional pages exist |
+| recordCount | integer | Total number of records |
+
+### data (array of objects)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| prescriberFirstName | string | Prescriber's first name. |
+| prescriberLastName | string | Prescriber's last name. |
+| npi | string | Prescriber's NPI number. |
+| state | string | State code where the prescriber is licensed. |
+| stateLicenseNumber | string | License number associated with the state. |
+| stateLicenseExpirationDate | string | State license number expiration date (Format: "YYYY-MM-DD"). |
+| deaNumber | string | DEA number information. |
+| deaExpirationDate | string | DEA expiration date (Format: "YYYY-MM-DD"). |
+
+<RequestExample>
+
+```bash
+GET /api/Prescriber/Get?clinicNumber=12345
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json
+{
+  "currentPage": 1,
+  "hasNextPage": false,
+  "recordCount": 2,
+  "data": [
+    {
+      "prescriberFirstName": "John",
+      "prescriberLastName": "Smith ",
+      "npi": "1451145114",
+      "state": "NY",
+      "stateLicenseNumber": "NY1234",
+      "stateLicenseExpirationDate": "2050-06-22",
+      "deaNumber": "JS#######",
+      "deaExpirationDate": "2050-05-31"
+    },
+    {
+      "prescriberFirstName": "John",
+      "prescriberLastName": "Smith",
+      "npi": "1451145114",
+      "state": "AZ",
+      "stateLicenseNumber": "AZ1234",
+      "stateLicenseExpirationDate": "2050-06-20",
+      "deaNumber": "JS#######",
+      "deaExpirationDate": "2050-05-31"
+    }
+  ]
+}
+```
+
+</ResponseExample>
