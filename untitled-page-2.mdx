@@ -1,0 +1,61 @@
+---
+title: "Prescriber Record Check"
+tag: "GET"
+---
+
+<Info>
+  All requests require a valid JWT token
+</Info>
+
+<Card title="Endpoint" icon="text-align-start" horizontal href="/">
+  GET `<path to API root>/api/Prescriber/PrescriberRecordCheck`
+</Card>
+
+The <Badge color="yellow">Get PrescriberRecordCheck</Badge> endpoint is intended to verify individual prescriber record(s) by NPI number. Prescriber record details are provided as a JSON object included in the request body.
+
+---
+
+## Body (application/json)
+
+### Required Fields
+
+| Field | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| clinicNumber | string | <Badge color="red">Required</Badge> | Clinic Number information provided by Wells. |
+| prescriberNPINumber | string | <Badge color="red">Required</Badge> | Prescriber's NPI number. |
+
+### Optional Fields
+
+| Field | Type | Requirement | Description |
+| --- | --- | --- | --- |
+| state | string | <Badge>Optional</Badge> | Prescriber's licensed state code information. |
+
+## Response (application/json)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| recordFound | boolean | Flag indicating whether the requested prescriber information was found. |
+| message | string | Message about the search result. _(Available options are: "No records found", "Records found: XX, XX, XX, XX...", "Record found", "No records found: XX")_ |
+
+<RequestExample>
+
+```json Request
+{
+	"prescriberNPINumber":"1451145114",
+	"clinicNumber":"123456"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Response
+
+{
+  "recordFound": true,
+  "message": "Records found: AZ, NY"  
+}
+```
+
+</ResponseExample>
