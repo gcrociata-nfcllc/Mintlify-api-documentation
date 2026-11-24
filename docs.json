@@ -47,8 +47,8 @@
       {
         "group": "Prescribers",
         "pages": [
-          "untitled-page",
-          "untitled-page-2"
+          "prescribers/get-prescribers",
+          "prescribers/prescriber-record-check"
         ]
       },
       {
